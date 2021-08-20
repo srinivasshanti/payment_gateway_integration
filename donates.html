@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparks Foundation | Donate</title>
+    <link rel="stylesheet" href="major.css">
+</head>
+<body style="background-image: url('img\ 8.jpg');">
+    <header>
+        <div class="title" >
+            <img src="logo_small.png" alt="" style="width: 100px; height: 60px;">
+               <a class="titlee" href="about.html" style="font-size:x-large;" >SPARKS FOUNDATION</a>
+        </div>
+    </header>
+
+    <div class="navbar">
+        <a class="nav-link" href="home.html" >Home</a>
+        <a class="nav-link" href="contact.html">Contact</a>
+        <a class="nav-link" href="about.html">About</a>
+        <a class="nav-link" href="donate.html">Donate</a>
+        <a class="nav-link" href="gallery.html">Gallery</a>
+    </div>
+
+    <div class="container" style="padding-bottom: 500px; padding-top: 50px;">
+        <div class="row">
+        <div class="donatebox">
+        <i class="fas fa-user" style="font-size: 380%; text-align: center;"></i>
+        <h3>"We make living by what we get,but we make a life by what we give."</h3>
+        <button class="button_pay" id="rzp-button1">Make your payment here</button>
+        
+        <!--  
+        <form>
+            <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_HbCI9guYIW7RRm" async></script>
+        </form>
+        -->
+        
+        </div>
+        </div>
+        </div>
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+                <script>
+                var options = {
+                    "key": "rzp_test_QObv4sRtyAkv3t", // Enter the Key ID generated from the Dashboard
+                    "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                    "currency": "INR",
+                    "name": "Srinivas Shanti",
+                    "description": "Test Transaction",
+                    "image": "logo_small.png",
+                    "order_id": "order_HmbwrAurvXsWWt", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                    "handler": function (response){
+                        alert(response.razorpay_payment_id);
+                        alert(response.razorpay_order_id);
+                        alert(response.razorpay_signature)
+                    },
+                    /*
+                    "prefill": {
+                        "name": "Arnav Singh",
+                        "email": "Arnav.singh@gmail.com",
+                        "contact": "9874324273"
+                    },*/
+                    "notes": {
+                        "address": "Razorpay Corporate Office"
+                    },
+                    "theme": {
+                        "color": "#00ADB5"
+                    }
+                };
+                var rzp1 = new Razorpay(options);
+                rzp1.on('payment.failed', function (response){
+                        alert(response.error.code);
+                        alert(response.error.description);
+                        alert(response.error.source);
+                        alert(response.error.step);
+                        alert(response.error.reason);
+                        alert(response.error.metadata.order_id);
+                        alert(response.error.metadata.payment_id);
+                });
+                document.getElementById('rzp-button1').onclick = function(e){
+                    rzp1.open();
+                    e.preventDefault();
+                }
+                </script>
+        
+        
+        <footer style="background-color: khaki; text-align: center; height: 80px; padding-top: 50px;">
+            <a href="" style="font-size: larger; text-decoration: none;">&copy; 2021 | Srinivas Shanti</a>
+        </footer>
+        
+
+    </body>
+    </html>
